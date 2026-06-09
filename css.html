@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS – ePortfolio</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.selector-demo .elem { font-size:0.9rem; padding:0.35rem 0.6rem; border-radius:5px; margin:0.2rem 0; }
+.selector-demo .elem-tag  { background:rgba(124,111,255,0.12); border-left:3px solid var(--accent); }
+.selector-demo .elem-class{ background:rgba(255,107,157,0.12); border-left:3px solid var(--accent2); }
+.selector-demo .elem-id   { background:rgba(78,205,196,0.12); border-left:3px solid var(--accent3); }
+.selector-demo .elem-pseudo{ background:rgba(255,217,61,0.1); border-left:3px solid var(--accent4); }
+
+.live-flex-demo { display:flex; gap:0.5rem; flex-wrap:wrap; padding:0.75rem; background:var(--bg2); border-radius:8px; margin:0.5rem 0; }
+.lf-item { padding:0.5rem 0.9rem; border-radius:6px; font-size:0.82rem; font-weight:500; background:rgba(124,111,255,0.15); border:1px solid rgba(124,111,255,0.3); }
+.lf-grow { flex:1; background:rgba(255,107,157,0.12); border-color:rgba(255,107,157,0.3); text-align:center; }
+
+.live-grid-demo { display:grid; grid-template-columns:repeat(3,1fr); gap:0.5rem; padding:0.75rem; background:var(--bg2); border-radius:8px; margin:0.5rem 0; }
+.lg-item { padding:0.6rem; border-radius:6px; font-size:0.78rem; text-align:center; font-weight:500; background:rgba(78,205,196,0.1); border:1px solid rgba(78,205,196,0.25); }
+.lg-wide { grid-column:span 2; background:rgba(124,111,255,0.1); border-color:rgba(124,111,255,0.25); }
+.lg-full { grid-column:span 3; background:rgba(255,107,157,0.1); border-color:rgba(255,107,157,0.25); }
+
+.mq-indicator { padding:0.75rem 1rem; border-radius:8px; font-weight:600; font-size:0.9rem; text-align:center; transition:background 0.3s, color 0.3s; }
+@media (max-width:600px) {
+  .mq-indicator { background:rgba(78,205,196,0.15); color:var(--accent3); }
+  .mq-indicator::before { content:'📱 Mobile view (≤600px) — single column layout active'; }
+}
+@media (min-width:601px) and (max-width:900px) {
+  .mq-indicator { background:rgba(255,217,61,0.1); color:var(--accent4); }
+  .mq-indicator::before { content:'📟 Tablet view (601–900px) — two column layout active'; }
+}
+@media (min-width:901px) {
+  .mq-indicator { background:rgba(124,111,255,0.12); color:var(--accent); }
+  .mq-indicator::before { content:'🖥️ Desktop view (>900px) — three column layout active'; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">prashant<span>.</span>portfolio</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="s1-fullstack.html">Full Stack</a>
+    <a href="s2-html.html">HTML</a>
+    <a href="s3-css.html" class="active">CSS</a>
+    <a href="s4-bootstrap.html">Bootstrap</a>
+    <a href="s5-javascript.html">JavaScript</a>
+  </div>
+</nav>
+
+<main>
+<div class="section-page">
+
+  <div class="section-header">
+    <div class="section-num">Section 03</div>
+    <h1>CSS</h1>
+    <p>Cascading Style Sheets control the visual presentation of HTML. CSS is "cascading" because styles can be overridden by later or more specific rules — which brings us to specificity.</p>
+  </div>
+
+  <!-- SELECTORS & SPECIFICITY -->
+  <div class="block">
+    <div class="block-title">Selectors &amp; Specificity</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">CSS selectors target HTML elements. When two rules conflict, <strong>specificity</strong> determines which wins. Think of it as a score: IDs beat classes; classes beat tags.</p>
+
+    <div class="demo-box">
+      <div class="demo-label"></div>
+      <div class="selector-demo">
+        <div class="elem elem-tag">p { color: gray } — <strong>Tag selector</strong> — specificity: <span style="color:var(--accent4)">(0,0,1)</span></div>
+        <div class="elem elem-class">.highlight { color: blue } — <strong>Class selector</strong> — specificity: <span style="color:var(--accent4)">(0,1,0)</span></div>
+        <div class="elem elem-id">#hero { color: purple } — <strong>ID selector</strong> — specificity: <span style="color:var(--accent4)">(1,0,0)</span></div>
+        <div class="elem elem-pseudo">a:hover { color: red } — <strong>Pseudo-class</strong> — specificity: <span style="color:var(--accent4)">(0,1,1)</span></div>
+      </div>
+    </div>
+
+<pre style="margin-top:1rem"><span class="c">/* Specificity: (0,0,1) — lowest */</span>
+<span class="kw">p</span> { <span class="attr">color</span>: <span class="val">gray</span>; }
+
+<span class="c">/* Specificity: (0,1,0) — overrides tag */</span>
+<span class="kw">.highlight</span> { <span class="attr">color</span>: <span class="val">blue</span>; }
+
+<span class="c">/* Specificity: (1,0,0) — overrides class */</span>
+<span class="kw">#hero</span> { <span class="attr">color</span>: <span class="val">purple</span>; }
+
+<span class="c">/* !important — overrides everything (use sparingly) */</span>
+<span class="kw">p</span> { <span class="attr">color</span>: <span class="val">red</span> <span class="kw">!important</span>; }</pre>
+  </div>
+
+  <!-- BOX MODEL -->
+  <div class="block">
+    <div class="block-title">The Box Model</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">Every element is a box with four layers: <strong>content</strong> (the actual text/image), <strong>padding</strong> (inner space), <strong>border</strong>, and <strong>margin</strong> (outer space). Using <code>box-sizing: border-box</code> makes width calculations predictable.</p>
+
+    <div class="demo-box">
+      <div class="demo-label"></div>
+      <div style="text-align:center; padding:1rem 0">
+        <div style="display:inline-block; padding:1.5rem; background:rgba(255,217,61,0.1); border:2px dashed rgba(255,217,61,0.4); border-radius:4px; font-size:0.75rem; color:var(--accent4)">
+          MARGIN
+          <div style="padding:1rem; background:rgba(255,107,157,0.1); border:2px dashed rgba(255,107,157,0.5); border-radius:4px; color:var(--accent2)">
+            BORDER
+            <div style="padding:1rem; background:rgba(78,205,196,0.1); border:2px dashed rgba(78,205,196,0.4); border-radius:4px; color:var(--accent3)">
+              PADDING
+              <div style="padding:0.75rem 1.25rem; background:rgba(124,111,255,0.15); border:1px solid rgba(124,111,255,0.3); border-radius:4px; color:var(--accent)">
+                CONTENT<br><span style="font-size:0.68rem; color:var(--muted)">width × height</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<pre style="margin-top:1rem"><span class="kw">.box</span> {
+  <span class="attr">width</span>:  <span class="num">300px</span>;
+  <span class="attr">height</span>: <span class="num">150px</span>;
+  <span class="attr">padding</span>:  <span class="num">20px</span>;          <span class="c">/* inner spacing */</span>
+  <span class="attr">border</span>:   <span class="num">2px</span> solid <span class="val">black</span>; <span class="c">/* visible outline */</span>
+  <span class="attr">margin</span>:   <span class="num">16px</span>;          <span class="c">/* outer spacing */</span>
+  <span class="c">/* Total width without box-sizing: 300+40+4 = 344px */</span>
+  <span class="attr">box-sizing</span>: <span class="val">border-box</span>;  <span class="c">/* width includes padding+border */</span>
+}</pre>
+  </div>
+
+  <!-- FLEXBOX -->
+  <div class="block">
+    <div class="block-title">Flexbox Layout</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">Flexbox arranges items in a single row or column and can distribute space automatically. It's perfect for navbars, card rows, and centering content.</p>
+
+    <div class="demo-box">
+      <div class="demo-label"></div>
+      <p style="font-size:0.8rem; color:var(--muted); margin-bottom:0.5rem">justify-content: space-between — items spread to edges:</p>
+      <div class="live-flex-demo" style="justify-content:space-between">
+        <div class="lf-item">Item A</div>
+        <div class="lf-item">Item B</div>
+        <div class="lf-item">Item C</div>
+      </div>
+
+      <p style="font-size:0.8rem; color:var(--muted); margin:0.75rem 0 0.5rem">flex: 1 on middle item — it grows to fill remaining space:</p>
+      <div class="live-flex-demo">
+        <div class="lf-item">Logo</div>
+        <div class="lf-item lf-grow">flex: 1 — grows to fill</div>
+        <div class="lf-item">Login</div>
+      </div>
+    </div>
+
+<pre style="margin-top:1rem"><span class="kw">.container</span> {
+  <span class="attr">display</span>: <span class="val">flex</span>;
+  <span class="attr">justify-content</span>: <span class="val">space-between</span>; <span class="c">/* horizontal axis */</span>
+  <span class="attr">align-items</span>:    <span class="val">center</span>;         <span class="c">/* vertical axis */</span>
+  <span class="attr">gap</span>: <span class="num">1rem</span>;
+  <span class="attr">flex-wrap</span>: <span class="val">wrap</span>;               <span class="c">/* wrap on small screens */</span>
+}
+<span class="kw">.grow-item</span> { <span class="attr">flex</span>: <span class="num">1</span>; }            <span class="c">/* take up remaining space */</span></pre>
+  </div>
+
+  <!-- CSS GRID -->
+  <div class="block">
+    <div class="block-title">CSS Grid Layout</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">Grid is a 2D layout system — it controls both rows and columns simultaneously. Items can span multiple cells using <code>grid-column: span N</code>.</p>
+
+    <div class="demo-box">
+      <div class="demo-label"></div>
+      <div class="live-grid-demo">
+        <div class="lg-item">Cell 1</div>
+        <div class="lg-item">Cell 2</div>
+        <div class="lg-item">Cell 3</div>
+        <div class="lg-item lg-wide">Spans 2 columns</div>
+        <div class="lg-item">Cell 5</div>
+        <div class="lg-item lg-full">Spans full width (3 cols)</div>
+      </div>
+    </div>
+
+<pre style="margin-top:1rem"><span class="kw">.grid</span> {
+  <span class="attr">display</span>: <span class="val">grid</span>;
+  <span class="attr">grid-template-columns</span>: <span class="val">repeat</span>(<span class="num">3</span>, <span class="num">1fr</span>); <span class="c">/* 3 equal columns */</span>
+  <span class="attr">gap</span>: <span class="num">1rem</span>;
+}
+<span class="kw">.wide-item</span>  { <span class="attr">grid-column</span>: <span class="val">span</span> <span class="num">2</span>; }  <span class="c">/* spans 2 columns */</span>
+<span class="kw">.full-width</span> { <span class="attr">grid-column</span>: <span class="val">1 / -1</span>; } <span class="c">/* spans ALL columns */</span>
+
+<span class="c">/* Responsive without media queries: */</span>
+<span class="kw">.auto-grid</span> {
+  <span class="attr">grid-template-columns</span>: <span class="val">repeat</span>(<span class="val">auto-fit</span>, <span class="val">minmax</span>(<span class="num">200px</span>, <span class="num">1fr</span>));
+}</pre>
+  </div>
+
+  <!-- ANIMATIONS -->
+  <div class="block">
+    <div class="block-title">CSS Keyframe Animations</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">The <code>@keyframes</code> rule defines animation steps. The <code>animation</code> property applies it — controlling duration, easing, iteration count, and direction.</p>
+
+    <div class="demo-box">
+      <div class="demo-label"></div>
+      <div class="anim-balls">
+        <div class="anim-ball ball1" title="bounce">↕</div>
+        <div style="flex:1">
+          <p style="font-size:0.8rem; font-weight:500">Bounce <code>ease-in-out</code></p>
+          <p style="font-size:0.75rem; color:var(--muted)">translateY(-20px) at 50%</p>
+        </div>
+      </div>
+      <div class="anim-balls" style="margin-top:0.75rem">
+        <div class="anim-ball ball2" title="spin">↻</div>
+        <div style="flex:1">
+          <p style="font-size:0.8rem; font-weight:500">Spin <code>linear infinite</code></p>
+          <p style="font-size:0.75rem; color:var(--muted)">rotate(360deg)</p>
+        </div>
+      </div>
+      <div class="anim-balls" style="margin-top:0.75rem">
+        <div class="anim-ball ball3" style="font-size:0.75rem">●</div>
+        <div style="flex:1">
+          <p style="font-size:0.8rem; font-weight:500">Fade pulse <code>ease-in-out</code></p>
+          <p style="font-size:0.75rem; color:var(--muted)">opacity 0.2 → 1 → 0.2</p>
+        </div>
+      </div>
+    </div>
+
+<pre style="margin-top:1rem"><span class="c">/* 1. Define keyframes */</span>
+<span class="kw">@keyframes</span> bounce {
+  <span class="num">0%</span>, <span class="num">100%</span> { <span class="attr">transform</span>: <span class="val">translateY</span>(<span class="num">0</span>); }
+  <span class="num">50%</span>       { <span class="attr">transform</span>: <span class="val">translateY</span>(<span class="num">-20px</span>); }
+}
+
+<span class="kw">@keyframes</span> spin {
+  <span class="num">to</span> { <span class="attr">transform</span>: <span class="val">rotate</span>(<span class="num">360deg</span>); }
+}
+
+<span class="c">/* 2. Apply animation */</span>
+<span class="kw">.ball</span> {
+  <span class="attr">animation</span>: bounce <span class="num">1.4s</span> ease-in-out infinite;
+  <span class="c">/*         name    duration  timing    iteration */</span>
+}</pre>
+  </div>
+
+  <!-- MEDIA QUERIES -->
+  <div class="block">
+    <div class="block-title">Media Queries &amp; Responsive Design</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">Media queries apply CSS only when a condition (like screen width) is true. This lets one codebase look great on both phones and desktops — <em>resize your browser to see this live!</em></p>
+
+    <div class="demo-box">
+      <div class="demo-label"></div>
+      <div class="mq-indicator"></div>
+    </div>
+
+<pre style="margin-top:1rem"><span class="c">/* Mobile-first: base styles are for small screens */</span>
+<span class="kw">.grid</span> { <span class="attr">grid-template-columns</span>: <span class="num">1fr</span>; }
+
+<span class="c">/* Tablet and above */</span>
+<span class="kw">@media</span> (<span class="attr">min-width</span>: <span class="num">601px</span>) {
+  <span class="kw">.grid</span> { <span class="attr">grid-template-columns</span>: <span class="val">repeat</span>(<span class="num">2</span>, <span class="num">1fr</span>); }
+}
+
+<span class="c">/* Desktop */</span>
+<span class="kw">@media</span> (<span class="attr">min-width</span>: <span class="num">901px</span>) {
+  <span class="kw">.grid</span> { <span class="attr">grid-template-columns</span>: <span class="val">repeat</span>(<span class="num">3</span>, <span class="num">1fr</span>); }
+}
+
+<span class="c">/* Can also target print, dark mode, etc. */</span>
+<span class="kw">@media</span> (<span class="attr">prefers-color-scheme</span>: dark) {
+  <span class="kw">body</span> { <span class="attr">background</span>: <span class="val">#111</span>; <span class="attr">color</span>: <span class="val">#eee</span>; }
+}</pre>
+  </div>
+
+  <div style="display:flex; gap:0.75rem; margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); flex-wrap:wrap">
+    <a href="s2-html.html" class="btn btn-outline">← HTML</a>
+    <a href="s4-bootstrap.html" class="btn btn-primary">Next: Bootstrap →</a>
+  </div>
+
+</div>
+</main>
+
+</body>
+</html>

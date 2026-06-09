@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Stack Development – ePortfolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">prashant<span>.</span>portfolio</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="s1-fullstack.html" class="active">Full Stack</a>
+    <a href="s2-html.html">HTML</a>
+    <a href="s3-css.html">CSS</a>
+    <a href="s4-bootstrap.html">Bootstrap</a>
+    <a href="s5-javascript.html">JavaScript</a>
+  </div>
+</nav>
+
+<main>
+<div class="section-page">
+
+  <div class="section-header">
+    <div class="section-num">Section 01</div>
+    <h1>Full Stack Development</h1>
+    <p>Full stack development means building both the <em>visible parts</em> of a web app users interact with, and the <em>invisible parts</em> that power it — the server logic and the database.</p>
+  </div>
+
+  <!-- THE THREE LAYERS -->
+  <div class="block">
+    <div class="block-title">The Three Layers</div>
+    <p style="color:var(--muted); margin-bottom:1.25rem;">Every web application is built on three interconnected layers. A full stack developer understands and can work across all three.</p>
+
+    <div class="arch-diagram">
+      <div class="arch-layer">
+        <div class="arch-layer-icon">🖥️</div>
+        <h3 style="color:#b5a0ff">Frontend</h3>
+        <p>What the user sees &amp; interacts with</p>
+        <ul>
+          <li>HTML – structure</li>
+          <li>CSS – styling</li>
+          <li>JavaScript – behaviour</li>
+          <li>React / Vue / Angular</li>
+        </ul>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-layer-icon">⚙️</div>
+        <h3 style="color:#ff9cc2">Backend</h3>
+        <p>Server-side logic &amp; APIs</p>
+        <ul>
+          <li>Node.js / Python</li>
+          <li>REST / GraphQL APIs</li>
+          <li>Authentication</li>
+          <li>Business logic</li>
+        </ul>
+      </div>
+      <div class="arch-layer">
+        <div class="arch-layer-icon">🗄️</div>
+        <h3 style="color:#6eddd8">Database</h3>
+        <p>Data storage &amp; retrieval</p>
+        <ul>
+          <li>MySQL / PostgreSQL</li>
+          <li>MongoDB / Redis</li>
+          <li>CRUD operations</li>
+          <li>Data modelling</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- REQUEST/RESPONSE FLOW -->
+  <div class="block">
+    <div class="block-title">Request–Response Flow</div>
+    <p style="color:var(--muted); margin-bottom:1.25rem;">When you visit a website, a chain of events happens in milliseconds. Here's how a typical request flows through a full stack application:</p>
+
+    <div class="flow-diagram">
+      <div class="flow-box" style="border-color:rgba(124,111,255,0.4); background:rgba(124,111,255,0.08)">🙋 User<br><small style="color:var(--muted)">Browser</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">HTTP Request<br><small style="color:var(--muted)">GET /products</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box" style="border-color:rgba(255,107,157,0.4); background:rgba(255,107,157,0.08)">⚙️ Server<br><small style="color:var(--muted)">Node.js</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box" style="border-color:rgba(78,205,196,0.4); background:rgba(78,205,196,0.08)">🗄️ Database<br><small style="color:var(--muted)">SQL Query</small></div>
+    </div>
+    <div class="flow-diagram" style="margin-top:0.5rem">
+      <div class="flow-box" style="border-color:rgba(124,111,255,0.4); background:rgba(124,111,255,0.08)">🖥️ Renders<br><small style="color:var(--muted)">HTML/JSON</small></div>
+      <div class="flow-arrow">←</div>
+      <div class="flow-box">HTTP Response<br><small style="color:var(--muted)">200 OK + Data</small></div>
+      <div class="flow-arrow">←</div>
+      <div class="flow-box" style="border-color:rgba(255,107,157,0.4); background:rgba(255,107,157,0.08)">⚙️ Server<br><small style="color:var(--muted)">Processes</small></div>
+      <div class="flow-arrow">←</div>
+      <div class="flow-box" style="border-color:rgba(78,205,196,0.4); background:rgba(78,205,196,0.08)">🗄️ Returns<br><small style="color:var(--muted)">Rows/Docs</small></div>
+    </div>
+    <p style="color:var(--muted); font-size:0.85rem; margin-top:0.75rem;">① User clicks a link → ② Browser sends HTTP GET request to the server → ③ Server runs a database query → ④ Database returns matching data → ⑤ Server formats it (HTML or JSON) → ⑥ Browser renders the page.</p>
+  </div>
+
+  <!-- POPULAR STACKS -->
+  <div class="block">
+    <div class="block-title">Popular Technology Stacks</div>
+    <p style="color:var(--muted); margin-bottom:1.25rem;">A "stack" is the combination of technologies used to build a complete application. Each stack has its own strengths:</p>
+
+    <div class="stacks-grid">
+      <div class="stack-card">
+        <h4 style="color:#b5a0ff">MEAN</h4>
+        <ul>
+          <li>MongoDB</li>
+          <li>Express.js</li>
+          <li>Angular</li>
+          <li>Node.js</li>
+        </ul>
+        <p style="font-size:0.75rem; color:var(--muted); margin-top:0.5rem">100% JavaScript across the whole stack.</p>
+      </div>
+      <div class="stack-card">
+        <h4 style="color:#ff9cc2">MERN</h4>
+        <ul>
+          <li>MongoDB</li>
+          <li>Express.js</li>
+          <li>React</li>
+          <li>Node.js</li>
+        </ul>
+        <p style="font-size:0.75rem; color:var(--muted); margin-top:0.5rem">Like MEAN but with React — the most popular today.</p>
+      </div>
+      <div class="stack-card">
+        <h4 style="color:#6eddd8">LAMP</h4>
+        <ul>
+          <li>Linux</li>
+          <li>Apache</li>
+          <li>MySQL</li>
+          <li>PHP</li>
+        </ul>
+        <p style="font-size:0.75rem; color:var(--muted); margin-top:0.5rem">The classic stack — powers WordPress and millions of sites.</p>
+      </div>
+      <div class="stack-card">
+        <h4 style="color:#ffd93d">JAMstack</h4>
+        <ul>
+          <li>JavaScript</li>
+          <li>APIs</li>
+          <li>Markup</li>
+          <li>CDN-hosted</li>
+        </ul>
+        <p style="font-size:0.75rem; color:var(--muted); margin-top:0.5rem">Modern, serverless approach — fast, secure, scalable.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT IS A FULL STACK DEV -->
+  <div class="block">
+    <div class="block-title">What Does a Full Stack Developer Do?</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">A full stack developer is a generalist engineer who can take a feature from concept to production — designing the UI, writing the API, and setting up the database schema. They act as a bridge between frontend and backend teams and are particularly valuable in smaller teams or startups where one person needs to own an entire feature.</p>
+
+    <table class="spec-table">
+      <thead>
+        <tr><th>Skill Area</th><th>Examples</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Frontend</td><td>HTML, CSS, JavaScript, React, responsive design, accessibility</td></tr>
+        <tr><td>Backend</td><td>REST APIs, authentication, server configuration, Node.js / Python</td></tr>
+        <tr><td>Database</td><td>SQL queries, NoSQL documents, schema design, ORM tools</td></tr>
+        <tr><td>DevOps</td><td>Git, deployment (Netlify / Vercel / Heroku), CI/CD pipelines</td></tr>
+        <tr><td>Security</td><td>HTTPS, input sanitisation, CORS, JWT tokens, hashing passwords</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border)">
+    <a href="s2-html.html" class="btn btn-primary">Next: HTML →</a>
+  </div>
+
+</div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML – ePortfolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">prashant<span>.</span>portfolio</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="s1-fullstack.html">Full Stack</a>
+    <a href="s2-html.html" class="active">HTML</a>
+    <a href="s3-css.html">CSS</a>
+    <a href="s4-bootstrap.html">Bootstrap</a>
+    <a href="s5-javascript.html">JavaScript</a>
+  </div>
+</nav>
+
+<main>
+<div class="section-page">
+
+  <div class="section-header">
+    <div class="section-num">Section 02</div>
+    <h1>HTML</h1>
+    <p>HTML (HyperText Markup Language) is the skeleton of every webpage. HTML5, the current standard, introduced semantic elements that make pages more accessible and meaningful to search engines.</p>
+  </div>
+
+  <!-- BOILERPLATE -->
+  <div class="block">
+    <div class="block-title">HTML5 Boilerplate &amp; Semantic Elements</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">Every HTML5 page starts with a standard structure. Semantic elements like <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, and <code>&lt;footer&gt;</code> describe the <em>purpose</em> of content — unlike a generic <code>&lt;div&gt;</code>.</p>
+
+<pre><span class="c">&lt;!-- HTML5 boilerplate --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="str">"en"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="str">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="str">"viewport"</span> <span class="attr">content</span>=<span class="str">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span>Page Title<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"style.css"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+
+  <span class="tag">&lt;header&gt;</span>               <span class="c">&lt;!-- site header / nav --&gt;</span>
+    <span class="tag">&lt;nav&gt;</span>...<span class="tag">&lt;/nav&gt;</span>
+  <span class="tag">&lt;/header&gt;</span>
+
+  <span class="tag">&lt;main&gt;</span>               <span class="c">&lt;!-- primary page content --&gt;</span>
+    <span class="tag">&lt;article&gt;</span>
+      <span class="tag">&lt;h1&gt;</span>Heading<span class="tag">&lt;/h1&gt;</span>
+      <span class="tag">&lt;p&gt;</span>Paragraph text.<span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/article&gt;</span>
+
+    <span class="tag">&lt;aside&gt;</span>Related content<span class="tag">&lt;/aside&gt;</span>
+  <span class="tag">&lt;/main&gt;</span>
+
+  <span class="tag">&lt;footer&gt;</span>© 2025<span class="tag">&lt;/footer&gt;</span>
+
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+
+    <table class="spec-table" style="margin-top:1.25rem">
+      <thead><tr><th>Element</th><th>Purpose</th><th>Instead of</th></tr></thead>
+      <tbody>
+        <tr><td>&lt;header&gt;</td><td>Site or section header — usually contains nav</td><td>&lt;div id="header"&gt;</td></tr>
+        <tr><td>&lt;nav&gt;</td><td>Navigation links block</td><td>&lt;div class="nav"&gt;</td></tr>
+        <tr><td>&lt;main&gt;</td><td>The primary unique content of the page</td><td>&lt;div id="content"&gt;</td></tr>
+        <tr><td>&lt;article&gt;</td><td>Self-contained content (blog post, card)</td><td>&lt;div class="post"&gt;</td></tr>
+        <tr><td>&lt;section&gt;</td><td>Thematic grouping with a heading</td><td>&lt;div class="section"&gt;</td></tr>
+        <tr><td>&lt;aside&gt;</td><td>Tangentially related content / sidebar</td><td>&lt;div class="sidebar"&gt;</td></tr>
+        <tr><td>&lt;footer&gt;</td><td>Page or section footer</td><td>&lt;div id="footer"&gt;</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FORM DEMO -->
+  <div class="block">
+    <div class="block-title">Live HTML Form Demo</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">Forms collect user input. Each <code>&lt;input&gt;</code> has a <code>type</code> attribute that controls its behaviour, and a <code>label</code> linked via <code>for</code>/<code>id</code> for accessibility.</p>
+
+    <div class="demo-box">
+      <div class="demo-label"></div>
+      <form class="demo-form" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="fname">Full Name</label>
+          <input type="text" id="fname" placeholder="e.g. Jane Doe">
+        </div>
+        <div class="form-group">
+          <label for="femail">Email Address</label>
+          <input type="email" id="femail" placeholder="e.g. jane@example.com">
+        </div>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap">
+          <div class="form-group" style="flex:1; min-width:140px">
+            <label for="fdob">Date of Birth</label>
+            <input type="date" id="fdob">
+          </div>
+          <div class="form-group" style="flex:1; min-width:140px">
+            <label for="fcolor">Favourite Colour</label>
+            <input type="color" id="fcolor" value="#7c6fff">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fcourse">Course</label>
+          <select id="fcourse">
+            <option value="">Select a course…</option>
+            <option>BSc Computer Science</option>
+            <option>BSc IT</option>
+            <option>BEng Software Engineering</option>
+          </select>
+        </div>
+        <div style="display:flex; gap:0.75rem">
+          <button type="submit" class="btn btn-primary btn-sm">Submit Form</button>
+          <button type="reset" class="btn btn-outline btn-sm">Reset</button>
+        </div>
+        <div id="form-result" class="output-box" style="display:none"></div>
+      </form>
+    </div>
+
+<pre style="margin-top:1.25rem"><span class="tag">&lt;form</span> <span class="attr">action</span>=<span class="str">"/submit"</span> <span class="attr">method</span>=<span class="str">"POST"</span><span class="tag">&gt;</span>
+
+  <span class="c">&lt;!-- label's 'for' must match input's 'id' --&gt;</span>
+  <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="str">"name"</span><span class="tag">&gt;</span>Full Name<span class="tag">&lt;/label&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="str">"text"</span> <span class="attr">id</span>=<span class="str">"name"</span> <span class="attr">name</span>=<span class="str">"name"</span> <span class="attr">required</span><span class="tag">&gt;</span>
+
+  <span class="tag">&lt;label</span> <span class="attr">for</span>=<span class="str">"email"</span><span class="tag">&gt;</span>Email<span class="tag">&lt;/label&gt;</span>
+  <span class="tag">&lt;input</span> <span class="attr">type</span>=<span class="str">"email"</span> <span class="attr">id</span>=<span class="str">"email"</span> <span class="attr">name</span>=<span class="str">"email"</span> <span class="attr">required</span><span class="tag">&gt;</span>
+
+  <span class="tag">&lt;button</span> <span class="attr">type</span>=<span class="str">"submit"</span><span class="tag">&gt;</span>Submit<span class="tag">&lt;/button&gt;</span>
+<span class="tag">&lt;/form&gt;</span></pre>
+  </div>
+
+  <!-- TABLE DEMO -->
+  <div class="block">
+    <div class="block-title">Accessible Table Demo</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">Tables are used for tabular data (not layout). The <code>scope</code> attribute on <code>&lt;th&gt;</code> elements helps screen readers understand which cells a heading belongs to.</p>
+
+    <div class="demo-box">
+      <div class="demo-label"></div>
+      <div style="overflow-x:auto">
+        <table class="spec-table" aria-label="Student module results">
+          <thead>
+            <tr>
+              <th scope="col">Module</th>
+              <th scope="col">Credits</th>
+              <th scope="col">Grade</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>CET138 Full Stack Dev</td><td>20</td><td>A</td><td style="color:var(--accent3)">Passed</td></tr>
+            <tr><td>CET140 Databases</td><td>20</td><td>B+</td><td style="color:var(--accent3)">Passed</td></tr>
+            <tr><td>CET145 Algorithms</td><td>20</td><td>B</td><td style="color:var(--accent3)">Passed</td></tr>
+            <tr><td>CET152 Networks</td><td>20</td><td>C+</td><td style="color:var(--accent4)">In Progress</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<pre style="margin-top:1.25rem"><span class="tag">&lt;table</span> <span class="attr">aria-label</span>=<span class="str">"Student results"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;thead&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;th</span> <span class="attr">scope</span>=<span class="str">"col"</span><span class="tag">&gt;</span>Module<span class="tag">&lt;/th&gt;</span>
+      <span class="tag">&lt;th</span> <span class="attr">scope</span>=<span class="str">"col"</span><span class="tag">&gt;</span>Grade<span class="tag">&lt;/th&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/thead&gt;</span>
+  <span class="tag">&lt;tbody&gt;</span>
+    <span class="tag">&lt;tr&gt;</span>
+      <span class="tag">&lt;td&gt;</span>Full Stack Dev<span class="tag">&lt;/td&gt;</span>
+      <span class="tag">&lt;td&gt;</span>A<span class="tag">&lt;/td&gt;</span>
+    <span class="tag">&lt;/tr&gt;</span>
+  <span class="tag">&lt;/tbody&gt;</span>
+<span class="tag">&lt;/table&gt;</span></pre>
+  </div>
+
+  <!-- MULTIMEDIA -->
+  <div class="block">
+    <div class="block-title">Multimedia Elements</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">HTML5 added native <code>&lt;video&gt;</code>, <code>&lt;audio&gt;</code>, and improved <code>&lt;img&gt;</code> elements — no plugins required. The <code>alt</code> attribute on images is critical for accessibility.</p>
+
+<pre><span class="c">&lt;!-- Image with alt text --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="str">"photo.jpg"</span>
+     <span class="attr">alt</span>=<span class="str">"A student coding at a desk"</span>
+     <span class="attr">width</span>=<span class="str">"600"</span> <span class="attr">height</span>=<span class="str">"400"</span>
+     <span class="attr">loading</span>=<span class="str">"lazy"</span><span class="tag">&gt;</span>
+
+<span class="c">&lt;!-- HTML5 Video (multiple formats for browser support) --&gt;</span>
+<span class="tag">&lt;video</span> <span class="attr">controls</span> <span class="attr">width</span>=<span class="str">"640"</span> <span class="attr">poster</span>=<span class="str">"thumbnail.jpg"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="str">"video.mp4"</span>  <span class="attr">type</span>=<span class="str">"video/mp4"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="str">"video.webm"</span> <span class="attr">type</span>=<span class="str">"video/webm"</span><span class="tag">&gt;</span>
+  Your browser does not support the video element.
+<span class="tag">&lt;/video&gt;</span>
+
+<span class="c">&lt;!-- HTML5 Audio --&gt;</span>
+<span class="tag">&lt;audio</span> <span class="attr">controls</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="str">"audio.mp3"</span> <span class="attr">type</span>=<span class="str">"audio/mpeg"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="str">"audio.ogg"</span> <span class="attr">type</span>=<span class="str">"audio/ogg"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/audio&gt;</span>
+
+<span class="c">&lt;!-- Figure with caption --&gt;</span>
+<span class="tag">&lt;figure&gt;</span>
+  <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="str">"chart.png"</span> <span class="attr">alt</span>=<span class="str">"Bar chart showing revenue"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;figcaption&gt;</span>Q4 2024 Revenue by Region<span class="tag">&lt;/figcaption&gt;</span>
+<span class="tag">&lt;/figure&gt;</span></pre>
+
+    <table class="spec-table" style="margin-top:1rem">
+      <thead><tr><th>Attribute</th><th>Used on</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>alt</td><td>&lt;img&gt;</td><td>Screen readers &amp; shown if image fails to load</td></tr>
+        <tr><td>controls</td><td>&lt;video&gt;, &lt;audio&gt;</td><td>Displays browser's built-in play/pause UI</td></tr>
+        <tr><td>loading="lazy"</td><td>&lt;img&gt;</td><td>Defers loading until the image is near the viewport</td></tr>
+        <tr><td>poster</td><td>&lt;video&gt;</td><td>Thumbnail shown before the video plays</td></tr>
+        <tr><td>autoplay muted</td><td>&lt;video&gt;</td><td>Auto-plays (muted required by most browsers)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display:flex; gap:0.75rem; margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border); flex-wrap:wrap">
+    <a href="s1-fullstack.html" class="btn btn-outline">← Full Stack</a>
+    <a href="s3-css.html" class="btn btn-primary">Next: CSS →</a>
+  </div>
+
+</div>
+</main>
+
+<script>
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('fname').value;
+  const email = document.getElementById('femail').value;
+  const result = document.getElementById('form-result');
+  result.style.display = 'block';
+  result.textContent = `✓ Form submitted! Name: "${name || '(empty)'}", Email: "${email || '(empty)'"}`; 
+}
+</script>
+
+</body>
+</html>

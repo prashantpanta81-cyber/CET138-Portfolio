@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript – ePortfolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">prashant<span>.</span>portfolio</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="s1-fullstack.html">Full Stack</a>
+    <a href="s2-html.html">HTML</a>
+    <a href="s3-css.html">CSS</a>
+    <a href="s4-bootstrap.html">Bootstrap</a>
+    <a href="s5-javascript.html" class="active">JavaScript</a>
+  </div>
+</nav>
+
+<main>
+<div class="section-page">
+
+  <div class="section-header">
+    <div class="section-num">Section 05</div>
+    <h1>JavaScript</h1>
+    <p>JavaScript makes web pages interactive and dynamic. It runs in the browser and can read/modify the HTML (DOM), respond to user events, and update the page without a full reload.</p>
+  </div>
+
+  <!-- DOM MANIPULATION -->
+  <div class="block">
+    <div class="block-title">DOM Manipulation</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">The <strong>Document Object Model (DOM)</strong> is a tree of all HTML elements. JavaScript can select elements with <code>document.getElementById()</code> or <code>querySelector()</code>, then change their content, style, or attributes.</p>
+
+    <div class="demo-box">
+      <div class="demo-label"></div>
+      <p id="dom-paragraph" style="padding:1rem; background:var(--bg2); border-radius:8px; border:1px solid var(--border); font-size:1rem; transition:all 0.3s">
+        This paragraph's text and style are controlled by JavaScript. Click a button below to change it!
+      </p>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:0.75rem">
+        <button class="btn btn-primary btn-sm" onclick="changeParagraph('text')">Change Text</button>
+        <button class="btn btn-outline btn-sm" onclick="changeParagraph('color')">Change Colour</button>
+        <button class="btn btn-outline btn-sm" onclick="changeParagraph('size')">Change Size</button>
+        <button class="btn btn-outline btn-sm" onclick="changeParagraph('reset')">Reset</button>
+      </div>
+    </div>
+
+<pre style="margin-top:1rem"><span class="c">// Select an element by its id</span>
+<span class="kw">const</span> para = document.<span class="attr">getElementById</span>(<span class="str">'dom-paragraph'</span>);
+
+<span class="c">// Change its text content</span>
+para.<span class="attr">textContent</span> = <span class="str">'JavaScript updated this text!'</span>;
+
+<span class="c">// Change inline styles</span>
+para.<span class="attr">style</span>.color    = <span class="str">'#7c6fff'</span>;
+para.<span class="attr">style</span>.fontSize = <span class="str">'1.3rem'</span>;
+
+<span class="c">// Add / remove CSS classes</span>
+para.<span class="attr">classList</span>.<span class="attr">add</span>(<span class="str">'highlight'</span>);
+para.<span class="attr">classList</span>.<span class="attr">remove</span>(<span class="str">'highlight'</span>);
+para.<span class="attr">classList</span>.<span class="attr">toggle</span>(<span class="str">'active'</span>);</pre>
+  </div>
+
+  <!-- INTERACTIVE COUNTER -->
+  <div class="block">
+    <div class="block-title">Interactive Counter with Event Handling</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">Event listeners make JavaScript respond to user actions. We attach a <code>click</code> listener to each button, update a variable, and re-render the display. The counter turns red below zero and green above zero.</p>
+
+    <div class="demo-box">
+      <div class="demo-label"></div>
+      <div class="counter-display" id="counter-val">0</div>
+      <div class="counter-btns">
+        <button class="btn btn-outline" onclick="updateCounter(-10)">−10</button>
+        <button class="btn btn-outline" onclick="updateCounter(-1)">−1</button>
+        <button class="btn btn-primary" onclick="resetCounter()">Reset</button>
+        <button class="btn btn-outline" onclick="updateCounter(1)">+1</button>
+        <button class="btn btn-outline" onclick="updateCounter(10)">+10</button>
+      </div>
+    </div>
+
+<pre style="margin-top:1rem"><span class="kw">let</span> count = <span class="num">0</span>;
+
+<span class="kw">function</span> <span class="attr">updateCounter</span>(amount) {
+  count += amount;
+  <span class="kw">const</span> display = document.<span class="attr">getElementById</span>(<span class="str">'counter-val'</span>);
+  display.<span class="attr">textContent</span> = count;
+
+  <span class="c">// Change colour based on value</span>
+  <span class="kw">if</span> (count > <span class="num">0</span>)      display.<span class="attr">style</span>.color = <span class="str">'#4ecdc4'</span>; <span class="c">// green</span>
+  <span class="kw">else if</span> (count < <span class="num">0</span>) display.<span class="attr">style</span>.color = <span class="str">'#ff6b6b'</span>; <span class="c">// red</span>
+  <span class="kw">else</span>                 display.<span class="attr">style</span>.color = <span class="str">'#7c6fff'</span>; <span class="c">// default</span>
+}
+
+<span class="c">// Or using addEventListener:</span>
+document.<span class="attr">getElementById</span>(<span class="str">'btn-plus'</span>)
+  .<span class="attr">addEventListener</span>(<span class="str">'click'</span>, () => <span class="attr">updateCounter</span>(<span class="num">1</span>));</pre>
+  </div>
+
+  <!-- COLOUR CHANGER -->
+  <div class="block">
+    <div class="block-title">Dynamic Colour Changer</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">Demonstrates DOM style manipulation using an array of colours. Clicking a swatch reads its <code>data-color</code> attribute and applies it to the preview element. Random mode generates a hex colour on the fly.</p>
+
+    <div class="demo-box">
+      <div class="demo-label"></div>
+      <div class="color-preview" id="color-preview" style="background:#7c6fff; color:#fff">
+        <span id="color-label">#7c6fff</span>
+      </div>
+      <div class="color-swatches">
+        <div class="swatch" style="background:#7c6fff" data-color="#7c6fff" onclick="setColor(this)"></div>
+        <div class="swatch" style="background:#ff6b9d" data-color="#ff6b9d" onclick="setColor(this)"></div>
+        <div class="swatch" style="background:#4ecdc4" data-color="#4ecdc4" onclick="setColor(this)"></div>
+        <div class="swatch" style="background:#ffd93d" data-color="#ffd93d" onclick="setColor(this)"></div>
+        <div class="swatch" style="background:#ff6b6b" data-color="#ff6b6b" onclick="setColor(this)"></div>
+        <div class="swatch" style="background:#a8edea" data-color="#a8edea" onclick="setColor(this)"></div>
+        <div class="swatch" style="background:#fd79a8" data-color="#fd79a8" onclick="setColor(this)"></div>
+        <div class="swatch" style="background:#6c5ce7" data-color="#6c5ce7" onclick="setColor(this)"></div>
+      </div>
+      <button class="btn btn-outline btn-sm" style="margin-top:0.75rem" onclick="randomColor()">🎲 Random Colour</button>
+    </div>
+
+<pre style="margin-top:1rem"><span class="kw">const</span> colours = [<span class="str">'#7c6fff'</span>, <span class="str">'#ff6b9d'</span>, <span class="str">'#4ecdc4'</span>, <span class="str">'#ffd93d'</span>];
+
+<span class="kw">function</span> <span class="attr">setColor</span>(swatch) {
+  <span class="kw">const</span> color   = swatch.<span class="attr">dataset</span>.color;
+  <span class="kw">const</span> preview = document.<span class="attr">getElementById</span>(<span class="str">'color-preview'</span>);
+  preview.<span class="attr">style</span>.background = color;
+  document.<span class="attr">getElementById</span>(<span class="str">'color-label'</span>).<span class="attr">textContent</span> = color;
+}
+
+<span class="kw">function</span> <span class="attr">randomColor</span>() {
+  <span class="c">// Generate a random hex colour</span>
+  <span class="kw">const</span> hex = <span class="str">'#'</span> + Math.<span class="attr">floor</span>(Math.<span class="attr">random</span>() * <span class="num">0xFFFFFF</span>)
+                          .<span class="attr">toString</span>(<span class="num">16</span>)
+                          .<span class="attr">padStart</span>(<span class="num">6</span>, <span class="str">'0'</span>);
+  document.<span class="attr">getElementById</span>(<span class="str">'color-preview'</span>).<span class="attr">style</span>.background = hex;
+  document.<span class="attr">getElementById</span>(<span class="str">'color-label'</span>).<span class="attr">textContent</span> = hex;
+}</pre>
+  </div>
+
+  <!-- FORM VALIDATION -->
+  <div class="block">
+    <div class="block-title">Full Form Validation with Real-Time Error Messages</div>
+    <p style="color:var(--muted); margin-bottom:1rem;">Real-time validation checks each field as the user types (using the <code>input</code> event) and gives immediate feedback. The form prevents submission unless all checks pass.</p>
+
+    <div class="demo-box">
+      <div class="demo-label"></div>
+      <form class="demo-form" id="val-form" onsubmit="validateSubmit(event)" novalidate>
+        <div class="form-group" id="vg-name">
+          <label for="v-name">Full Name <span style="color:#ff6b6b">*</span></label>
+          <input type="text" id="v-name" placeholder="At least 3 characters" oninput="validateName()">
+          <span class="error" id="err-name"></span>
+        </div>
+
+        <div class="form-group" id="vg-email">
+          <label for="v-email">Email Address <span style="color:#ff6b6b">*</span></label>
+          <input type="email" id="v-email" placeholder="user@example.com" oninput="validateEmail()">
+          <span class="error" id="err-email"></span>
+        </div>
+
+        <div class="form-group" id="vg-pass">
+          <label for="v-pass">Password <span style="color:#ff6b6b">*</span></label>
+          <input type="password" id="v-pass" placeholder="Min 8 chars, 1 number" oninput="validatePassword()">
+          <span class="error" id="err-pass"></span>
+        </div>
+
+        <div class="form-group" id="vg-phone">
+          <label for="v-phone">Phone Number</label>
+          <input type="tel" id="v-phone" placeholder="10 digits e.g. 9800000000" oninput="validatePhone()">
+          <span class="error" id="err-phone"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-sm">Create Account</button>
+        <div id="val-success" class="output-box" style="display:none; color:var(--accent3)"></div>
+      </form>
+    </div>
+
+<pre style="margin-top:1rem"><span class="c">// Validate email with a regular expression</span>
+<span class="kw">function</span> <span class="attr">validateEmail</span>() {
+  <span class="kw">const</span> val   = document.<span class="attr">getElementById</span>(<span class="str">'v-email'</span>).<span class="attr">value</span>;
+  <span class="kw">const</span> regex = <span class="str">/^[^\s@]+@[^\s@]+\.[^\s@]+$/</span>;
+
+  <span class="kw">if</span> (!val) {
+    <span class="attr">showError</span>(<span class="str">'vg-email'</span>, <span class="str">'err-email'</span>, <span class="str">'Email is required'</span>);
+    <span class="kw">return false</span>;
+  }
+  <span class="kw">if</span> (!regex.<span class="attr">test</span>(val)) {
+    <span class="attr">showError</span>(<span class="str">'vg-email'</span>, <span class="str">'err-email'</span>, <span class="str">'Enter a valid email address'</span>);
+    <span class="kw">return false</span>;
+  }
+  <span class="attr">showValid</span>(<span class="str">'vg-email'</span>, <span class="str">'err-email'</span>);
+  <span class="kw">return true</span>;
+}
+
+<span class="c">// Prevent form submission if validation fails</span>
+<span class="kw">function</span> <span class="attr">validateSubmit</span>(e) {
+  e.<span class="attr">preventDefault</span>();
+  <span class="kw">const</span> ok = <span class="attr">validateName</span>() &amp;&amp; <span class="attr">validateEmail</span>() &amp;&amp; <span class="attr">validatePassword</span>();
+  <span class="kw">if</span> (ok) { <span class="c">/* submit to server */</span> }
+}</pre>
+  </div>
+
+  <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border)">
+    <a href="s4-bootstrap.html" class="btn btn-outline">← Bootstrap</a>
+    <a href="index.html" class="btn btn-primary" style="margin-left:0.75rem">↖ Back to Home</a>
+  </div>
+
+</div>
+</main>
+
+<script>
+/* ── DOM Manipulation ── */
+const origText = 'This paragraph\'s text and style are controlled by JavaScript. Click a button below to change it!';
+let domState = 0;
+function changeParagraph(type) {
+  const el = document.getElementById('dom-paragraph');
+  if (type === 'text') { el.textContent = 'JavaScript changed this text using el.textContent! ✓'; }
+  else if (type === 'color') { el.style.color = '#7c6fff'; el.style.borderColor = 'rgba(124,111,255,0.4)'; }
+  else if (type === 'size') { el.style.fontSize = el.style.fontSize === '1.25rem' ? '0.85rem' : '1.25rem'; }
+  else { el.textContent = origText; el.style.color = ''; el.style.fontSize = ''; el.style.borderColor = ''; }
+}
+
+/* ── Counter ── */
+let count = 0;
+function updateCounter(n) {
+  count += n;
+  const el = document.getElementById('counter-val');
+  el.textContent = count;
+  el.style.color = count > 0 ? '#4ecdc4' : count < 0 ? '#ff6b6b' : '#7c6fff';
+}
+function resetCounter() { count = 0; updateCounter(0); }
+
+/* ── Colour Changer ── */
+function setColor(swatch) {
+  const color = swatch.dataset.color;
+  const preview = document.getElementById('color-preview');
+  preview.style.background = color;
+  document.getElementById('color-label').textContent = color;
+  const r = parseInt(color.slice(1,3),16), g = parseInt(color.slice(3,5),16), b = parseInt(color.slice(5,7),16);
+  preview.style.color = (r*0.299 + g*0.587 + b*0.114) > 186 ? '#111' : '#fff';
+}
+function randomColor() {
+  const hex = '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6,'0');
+  const fakeEl = { dataset: { color: hex }, style: { background: hex } };
+  const preview = document.getElementById('color-preview');
+  preview.style.background = hex;
+  document.getElementById('color-label').textContent = hex;
+  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  preview.style.color = (r*0.299 + g*0.587 + b*0.114) > 186 ? '#111' : '#fff';
+}
+
+/* ── Form Validation ── */
+function showError(groupId, errId, msg) {
+  document.getElementById(groupId).className = 'form-group has-error';
+  const e = document.getElementById(errId);
+  e.textContent = msg; e.style.display = 'block';
+}
+function showValid(groupId, errId) {
+  document.getElementById(groupId).className = 'form-group valid';
+  const e = document.getElementById(errId);
+  e.textContent = ''; e.style.display = 'none';
+}
+function validateName() {
+  const val = document.getElementById('v-name').value.trim();
+  if (!val) { showError('vg-name','err-name','Name is required'); return false; }
+  if (val.length < 3) { showError('vg-name','err-name','Name must be at least 3 characters'); return false; }
+  showValid('vg-name','err-name'); return true;
+}
+function validateEmail() {
+  const val = document.getElementById('v-email').value.trim();
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!val) { showError('vg-email','err-email','Email is required'); return false; }
+  if (!re.test(val)) { showError('vg-email','err-email','Enter a valid email address'); return false; }
+  showValid('vg-email','err-email'); return true;
+}
+function validatePassword() {
+  const val = document.getElementById('v-pass').value;
+  if (!val) { showError('vg-pass','err-pass','Password is required'); return false; }
+  if (val.length < 8) { showError('vg-pass','err-pass','Password must be at least 8 characters'); return false; }
+  if (!/\d/.test(val)) { showError('vg-pass','err-pass','Password must contain at least one number'); return false; }
+  showValid('vg-pass','err-pass'); return true;
+}
+function validatePhone() {
+  const val = document.getElementById('v-phone').value.trim();
+  if (!val) { showValid('vg-phone','err-phone'); return true; }
+  if (!/^\d{10}$/.test(val)) { showError('vg-phone','err-phone','Phone must be exactly 10 digits'); return false; }
+  showValid('vg-phone','err-phone'); return true;
+}
+function validateSubmit(e) {
+  e.preventDefault();
+  const ok = validateName() & validateEmail() & validatePassword() & validatePhone();
+  const s = document.getElementById('val-success');
+  if (ok) {
+    s.style.display = 'block';
+    s.textContent = '✓ All fields valid! Form would now be submitted to the server.';
+  } else {
+    s.style.display = 'none';
+  }
+}
+</script>
+
+</body>
+</html>
